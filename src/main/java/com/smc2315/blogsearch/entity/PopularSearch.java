@@ -1,4 +1,4 @@
-package com.smc2315.blogsearch;
+package com.smc2315.blogsearch.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
