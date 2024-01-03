@@ -1,6 +1,6 @@
 package com.smc2315.blogsearch.repository;
 
-import com.smc2315.blogsearch.PopularSearch;
+import com.smc2315.blogsearch.entity.PopularSearch;
 import com.smc2315.blogsearch.config.TestQuerydslConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
