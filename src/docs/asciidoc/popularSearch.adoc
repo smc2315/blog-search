@@ -1,0 +1,2 @@
+== PopularSearchController
+operation::popular-search-controller-test/인기_검색어를_조회한다[snippets="http-request,http-response"]
