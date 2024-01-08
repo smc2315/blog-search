@@ -1,6 +1,6 @@
 package com.smc2315.blogsearch.service;
 
-import com.smc2315.blogsearch.dto.PopularSearchMapper;
+import com.smc2315.blogsearch.dto.mapper.PopularSearchMapper;
 import com.smc2315.blogsearch.dto.response.PopularSearchResponse;
 import com.smc2315.blogsearch.repository.PopularSearchRepository;
 import lombok.RequiredArgsConstructor;
