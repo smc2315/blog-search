@@ -18,7 +18,7 @@ public class CustomPopularSearchRepositoryImpl implements CustomPopularSearchRep
     @Override
     public List<PopularSearch> findTop10Keywords() {
         return jpaQueryFactory.selectFrom(popularSearch)
-                .orderBy(popularSearch.count.desc())
+                .orderBy(popularSearch.count.desc(), popularSearch.keyword.asc())
                 .limit(10)
                 .fetch();
     }
