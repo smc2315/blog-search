@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(PopularSearchController.class)
 public class PopularSearchControllerTest extends AbstractRestDocsTest {
+
     private static final String URI = "/api/v1/popular/search";
 
     @MockBean
