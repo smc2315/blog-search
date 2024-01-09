@@ -1,0 +1,2 @@
+== BlogSearchController
+operation::blog-search-controller-test/블로그를_검색한다[snippets="http-request,http-response"]
