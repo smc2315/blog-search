@@ -27,3 +27,8 @@ blog:
     kakao:
       api-uri: ${KAKAO_API_URI}
       api-key: ${KAKAO_API_KEY}
+
+logging:
+  level:
+    com.smc2315.blogsearch: debug
+
