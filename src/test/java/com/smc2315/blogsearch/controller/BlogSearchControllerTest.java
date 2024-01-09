@@ -9,18 +9,21 @@ import com.smc2315.blogsearch.service.BlogSearchService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BlogSearchController.class)
+@EnableFeignClients
 public class BlogSearchControllerTest extends AbstractRestDocsTest {
 
     private static final String URI = "/api/v1/blog/search";
@@ -36,7 +39,7 @@ public class BlogSearchControllerTest extends AbstractRestDocsTest {
         final String sort = "recency";
         final String blogName = "최강용태의 OAuth2 강의";
         final String contents = "소셜 로그인은 이렇게 하는거다";
-        final LocalDateTime dateTime = LocalDateTime.now();
+        final OffsetDateTime dateTime = OffsetDateTime.now();
         final String thumbnail = "null";
         final String title = "소셜 로그인 작성 가이드";
         final String url = "https://test.com";
@@ -53,10 +56,10 @@ public class BlogSearchControllerTest extends AbstractRestDocsTest {
         parameterMap.add("page", String.valueOf(page));
         parameterMap.add("sort", "recency");
 
-        given(blogSearchService.getBlogSearchResults(blogSearchRequest)).willReturn(blogSearchResponse);
+        given(blogSearchService.getBlogSearchResults(any(BlogSearchRequest.class))).willReturn(blogSearchResponse);
 
         //when & then
-        mockMvc.perform(get(URI)
+        mockMvc.perform(get(URI).params(parameterMap)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

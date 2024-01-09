@@ -12,7 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +36,7 @@ public class BlogSearchServiceTest {
         final BlogSearchRequest blogSearchRequest = new BlogSearchRequest(query, page, sort);
         final String blogName = "최강용태의 OAuth2 강의";
         final String contents = "소셜 로그인은 이렇게 하는거다";
-        final LocalDateTime dateTime = LocalDateTime.now();
+        final OffsetDateTime dateTime = OffsetDateTime.now();
         final String thumbnail = "null";
         final String title = "소셜 로그인 작성 가이드";
         final String url = "https://test.com";
