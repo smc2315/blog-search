@@ -1,16 +1,16 @@
 package com.smc2315.blogsearch.config;
 
-import com.smc2315.blogsearch.external.interceptor.OpenFeignAuthorizationInterceptor;
+import feign.Logger;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@EnableFeignClients("com.smc2315.blogsearch.external")
+@EnableFeignClients(basePackages = "com.smc2315.blogsearch")
 @Configuration
 public class OpenFeignConfiguration {
 
     @Bean
-    public OpenFeignAuthorizationInterceptor feignInterceptor() {
-        return new OpenFeignAuthorizationInterceptor();
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 }
