@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface BlogSearchOpenFeign {
 
     @GetMapping
-    ApiResponse searchBlogs(String query, int page, String sort);
+    ApiResponse searchBlogs(String query, Integer page, String sort);
 }
