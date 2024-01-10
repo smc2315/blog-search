@@ -1,13 +1,13 @@
-package com.smc2315.blogsearch.external;
+package com.smc2315.blogsearch.external.client;
 
-import com.smc2315.blogsearch.config.KaKaoOpenFeignConfiguration;
+import com.smc2315.blogsearch.config.KakaoOpenFeignConfiguration;
 import com.smc2315.blogsearch.dto.response.KakaoApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "KakaoBlogSearchOpenFeign", url = "${blog.search.kakao.api-uri}", configuration = KaKaoOpenFeignConfiguration.class)
-public interface KakaoBlogSearchOpenFeign extends BlogSearchOpenFeign{
+@FeignClient(name = "KakaoBlogSearchOpenFeign", qualifiers = "kakao", url = "${blog.search.kakao.api-uri}", configuration = KakaoOpenFeignConfiguration.class)
+public interface KakaoBlogSearchOpenFeign extends BlogSearchOpenFeign {
 
     @GetMapping
     @Override
