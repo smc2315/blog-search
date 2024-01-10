@@ -27,6 +27,10 @@ blog:
     kakao:
       api-uri: ${KAKAO_API_URI}
       api-key: ${KAKAO_API_KEY}
+    naver:
+      api-uri: ${NAVER_API_URI}
+      client-id: ${NAVER_CLIENT_ID}
+      client-secret: ${NAVER_CLIENT_SECRET}
 
 logging:
   level:
