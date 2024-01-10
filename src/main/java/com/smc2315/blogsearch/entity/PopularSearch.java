@@ -5,12 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +21,15 @@ public class PopularSearch {
     private String keyword;
 
     private int count;
+
+    public static PopularSearch create(String keyword) {
+        PopularSearch popularSearch = new PopularSearch();
+        popularSearch.keyword = keyword;
+        popularSearch.count = 1;
+        return popularSearch;
+    }
+
+    public void increaseCount() {
+        count++;
+    }
 }
