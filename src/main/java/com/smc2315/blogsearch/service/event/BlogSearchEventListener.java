@@ -18,6 +18,6 @@ public class BlogSearchEventListener {
     @EventListener(classes = BlogSearchEvent.class)
     public void handle(BlogSearchEvent event) {
         SendableParameter params = event.getValue();
-        popularSearchService.increaseSearchCount(params.getKeyword());
+        popularSearchService.increaseSearchCount(params.keyword());
     }
 }
