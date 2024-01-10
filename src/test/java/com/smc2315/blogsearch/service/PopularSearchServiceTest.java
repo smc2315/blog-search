@@ -10,12 +10,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PopularSearchServiceTest {
@@ -27,12 +30,41 @@ public class PopularSearchServiceTest {
     private PopularSearchService popularSearchService;
 
     @Test
-    public void 인기검색어_최대_10개를_조회한다() {
+    void 존재하는_검색어를_저장한다() {
         //given
-        PopularSearch popularSearch = PopularSearch.builder()
-                .keyword("keyword")
-                .count(1)
-                .build();
+        final String keyword = "keyword";
+        PopularSearch popularSearch = PopularSearch.create(keyword);
+        given(popularSearchRepository.findByKeyword(keyword)).willReturn(Optional.of(popularSearch));
+        //when
+        popularSearchService.increaseSearchCount(keyword);
+        //then
+        assertAll(
+                () -> verify(popularSearchRepository).findByKeyword(anyString()),
+                () -> verify(popularSearchRepository, never()).save(any(PopularSearch.class))
+        );
+
+    }
+
+    @Test
+    void 존재하지않는_검색어를_저장한다() {
+        //given
+        final String keyword = "keyword";
+        given(popularSearchRepository.findByKeyword(keyword)).willReturn(Optional.empty());
+        //when
+        popularSearchService.increaseSearchCount(keyword);
+        //then
+        assertAll(
+                () -> verify(popularSearchRepository).findByKeyword(anyString()),
+                () -> verify(popularSearchRepository, times(1)).save(any(PopularSearch.class))
+        );
+
+    }
+
+    @Test
+    void 인기검색어_최대_10개를_조회한다() {
+        //given
+        final String keyword = "keyword";
+        PopularSearch popularSearch = PopularSearch.create(keyword);
         List<PopularSearch> popularSearches = IntStream.rangeClosed(0, 9)
                 .mapToObj(n -> popularSearch)
                 .toList();
