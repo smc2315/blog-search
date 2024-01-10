@@ -1,4 +1,4 @@
-package com.smc2315.blogsearch.external;
+package com.smc2315.blogsearch.external.client;
 
 import com.smc2315.blogsearch.dto.response.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
