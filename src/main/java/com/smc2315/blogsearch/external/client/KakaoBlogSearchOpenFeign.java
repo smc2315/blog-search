@@ -1,7 +1,7 @@
 package com.smc2315.blogsearch.external.client;
 
 import com.smc2315.blogsearch.config.KakaoOpenFeignConfiguration;
-import com.smc2315.blogsearch.dto.response.KakaoApiResponse;
+import com.smc2315.blogsearch.external.dto.KakaoApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

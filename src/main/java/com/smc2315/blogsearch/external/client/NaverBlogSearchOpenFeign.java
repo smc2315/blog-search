@@ -1,7 +1,7 @@
 package com.smc2315.blogsearch.external.client;
 
 import com.smc2315.blogsearch.config.NaverOpenFeignConfiguration;
-import com.smc2315.blogsearch.dto.response.NaverApiResponse;
+import com.smc2315.blogsearch.external.dto.NaverApiResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

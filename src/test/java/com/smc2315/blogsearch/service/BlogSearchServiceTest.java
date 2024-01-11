@@ -4,7 +4,7 @@ import com.smc2315.blogsearch.dto.common.Document;
 import com.smc2315.blogsearch.dto.common.Meta;
 import com.smc2315.blogsearch.dto.request.BlogSearchRequest;
 import com.smc2315.blogsearch.dto.response.BlogSearchResponse;
-import com.smc2315.blogsearch.dto.response.KakaoApiResponse;
+import com.smc2315.blogsearch.external.dto.KakaoApiResponse;
 import com.smc2315.blogsearch.external.BlogSearchApiCaller;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

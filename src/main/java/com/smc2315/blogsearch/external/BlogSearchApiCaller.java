@@ -1,7 +1,7 @@
 package com.smc2315.blogsearch.external;
 
 import com.smc2315.blogsearch.dto.request.BlogSearchRequest;
-import com.smc2315.blogsearch.dto.response.ApiResponse;
+import com.smc2315.blogsearch.external.dto.ApiResponse;
 import com.smc2315.blogsearch.external.client.BlogSearchOpenFeign;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.retry.annotation.Recover;

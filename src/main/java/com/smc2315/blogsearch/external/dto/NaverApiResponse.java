@@ -1,4 +1,4 @@
-package com.smc2315.blogsearch.dto.response;
+package com.smc2315.blogsearch.external.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smc2315.blogsearch.dto.common.Document;

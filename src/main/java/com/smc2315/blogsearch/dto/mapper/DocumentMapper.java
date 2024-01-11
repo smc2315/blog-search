@@ -1,7 +1,7 @@
 package com.smc2315.blogsearch.dto.mapper;
 
 import com.smc2315.blogsearch.dto.common.Document;
-import com.smc2315.blogsearch.dto.response.NaverApiResponse.Item;
+import com.smc2315.blogsearch.external.dto.NaverApiResponse.Item;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

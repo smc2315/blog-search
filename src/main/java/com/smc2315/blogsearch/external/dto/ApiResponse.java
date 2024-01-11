@@ -1,4 +1,4 @@
-package com.smc2315.blogsearch.dto.response;
+package com.smc2315.blogsearch.external.dto;
 
 import com.smc2315.blogsearch.dto.common.Document;
 import com.smc2315.blogsearch.dto.common.Meta;
