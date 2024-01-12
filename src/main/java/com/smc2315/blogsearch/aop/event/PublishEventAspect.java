@@ -1,4 +1,4 @@
-package com.smc2315.blogsearch.aop;
+package com.smc2315.blogsearch.aop.event;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -41,7 +41,7 @@ public class PublishEventAspect implements ApplicationEventPublisherAware {
             return createEventWithoutArgs(publishEvent);
         }
         if (!StringUtils.hasLength(publishEvent.params())) {
-            return createEventWithArgs(publishEvent, args[0]);
+            return createEventWithoutParam(publishEvent, args[0]);
         }
         if (isSpel(publishEvent.params())) {
             return createEventWithSpel(publishEvent, args[0]);
@@ -55,13 +55,15 @@ public class PublishEventAspect implements ApplicationEventPublisherAware {
                 .newInstance();
     }
 
-    private Object createEventWithArgs(PublishEvent publishEvent, Object arg) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    private Object createEventWithoutParam(PublishEvent publishEvent, Object arg) throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
         return publishEvent.eventType()
                 .getConstructor(arg.getClass())
                 .newInstance(arg);
     }
 
-    private Object createEventWithSpel(PublishEvent publishEvent, Object arg) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    private Object createEventWithSpel(PublishEvent publishEvent, Object arg) throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
         String spel = publishEvent.params().replaceAll(spelRegex, "$1");
         Object constructArg = expressionParser.parseExpression(spel).getValue(arg);
         return publishEvent.eventType()
@@ -69,7 +71,8 @@ public class PublishEventAspect implements ApplicationEventPublisherAware {
                 .newInstance(constructArg);
     }
 
-    private Object createEventWithStringParam(PublishEvent publishEvent) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    private Object createEventWithStringParam(PublishEvent publishEvent) throws NoSuchMethodException, IllegalAccessException,
+            InvocationTargetException, InstantiationException {
         return publishEvent.eventType().getConstructor(String.class).newInstance(publishEvent.params());
     }
 
