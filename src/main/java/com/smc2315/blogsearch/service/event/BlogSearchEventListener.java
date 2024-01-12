@@ -1,6 +1,6 @@
 package com.smc2315.blogsearch.service.event;
 
-import com.smc2315.blogsearch.aop.BlogSearchEvent;
+import com.smc2315.blogsearch.aop.event.BlogSearchEvent;
 import com.smc2315.blogsearch.dto.SendableParameter;
 import com.smc2315.blogsearch.service.PopularSearchService;
 import lombok.RequiredArgsConstructor;
