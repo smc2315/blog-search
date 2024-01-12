@@ -1,4 +1,4 @@
-package com.smc2315.blogsearch.aop;
+package com.smc2315.blogsearch.aop.event;
 
 import com.smc2315.blogsearch.dto.EventHoldingValue;
 

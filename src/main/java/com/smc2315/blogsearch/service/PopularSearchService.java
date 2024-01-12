@@ -1,11 +1,13 @@
 package com.smc2315.blogsearch.service;
 
+import com.smc2315.blogsearch.aop.lock.DistributeLock;
 import com.smc2315.blogsearch.dto.mapper.PopularSearchMapper;
 import com.smc2315.blogsearch.dto.response.PopularSearchResponse;
 import com.smc2315.blogsearch.entity.PopularSearch;
 import com.smc2315.blogsearch.repository.PopularSearchRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,7 +20,9 @@ public class PopularSearchService {
 
     private final PopularSearchRepository popularSearchRepository;
 
+    @DistributeLock(key = "#keyword")
     public void increaseSearchCount(String keyword) {
+        System.out.println("PopularSearchService.increaseSearchCount");
         popularSearchRepository.findByKeyword(keyword)
                 .ifPresentOrElse(
                         PopularSearch::increaseCount,

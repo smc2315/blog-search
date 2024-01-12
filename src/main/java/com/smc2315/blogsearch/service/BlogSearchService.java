@@ -1,7 +1,7 @@
 package com.smc2315.blogsearch.service;
 
-import com.smc2315.blogsearch.aop.BlogSearchEvent;
-import com.smc2315.blogsearch.aop.PublishEvent;
+import com.smc2315.blogsearch.aop.event.BlogSearchEvent;
+import com.smc2315.blogsearch.aop.event.PublishEvent;
 import com.smc2315.blogsearch.dto.mapper.BlogSearchMapper;
 import com.smc2315.blogsearch.dto.request.BlogSearchRequest;
 import com.smc2315.blogsearch.dto.response.BlogSearchResponse;
