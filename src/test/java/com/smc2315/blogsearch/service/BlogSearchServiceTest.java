@@ -4,8 +4,11 @@ import com.smc2315.blogsearch.dto.common.Document;
 import com.smc2315.blogsearch.dto.common.Meta;
 import com.smc2315.blogsearch.dto.request.BlogSearchRequest;
 import com.smc2315.blogsearch.dto.response.BlogSearchResponse;
-import com.smc2315.blogsearch.external.dto.KakaoApiResponse;
+import com.smc2315.blogsearch.exception.ApplicationError;
+import com.smc2315.blogsearch.exception.BlogSearchException;
 import com.smc2315.blogsearch.external.BlogSearchApiCaller;
+import com.smc2315.blogsearch.external.dto.KakaoApiResponse;
+import feign.FeignException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +19,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,5 +61,22 @@ public class BlogSearchServiceTest {
         assertThat(blogSearchResponse.documents().get(0).thumbnail()).isEqualTo(thumbnail);
         assertThat(blogSearchResponse.documents().get(0).title()).isEqualTo(title);
         assertThat(blogSearchResponse.documents().get(0).url()).isEqualTo(url);
+    }
+
+    @Test
+    void 블로그_검색_실패() {
+        //given
+        final String query = "용태";
+        final int page = 1;
+        final String sort = "recency";
+        final BlogSearchRequest blogSearchRequest = new BlogSearchRequest(query, page, sort);
+
+        given(blogSearchApiCaller.searchBlogs(blogSearchRequest)).willThrow(FeignException.class);
+
+        //when&then
+        assertThatThrownBy(() -> blogSearchService.getBlogSearchResults(blogSearchRequest))
+                .isInstanceOf(BlogSearchException.class)
+                .hasMessage(ApplicationError.BLOG_SEARCH_ERROR.getMessage());
+
     }
 }
