@@ -20,7 +20,7 @@ public class BlogSearchApiCaller {
         this.naverBlogSearchOpenFeign = naverBlogSearchOpenFeign;
     }
 
-    @Retryable(maxAttempts = 1)
+    @Retryable(maxAttempts = 1, listeners = "loggingRetryListener")
     public ApiResponse searchBlogs(BlogSearchRequest blogSearchRequest) {
         return kakaoBlogSearchOpenFeign.searchBlogs(
                 blogSearchRequest.query(),

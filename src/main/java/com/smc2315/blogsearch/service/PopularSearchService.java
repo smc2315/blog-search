@@ -21,7 +21,6 @@ public class PopularSearchService {
 
     @DistributeLock(key = "#keyword")
     public void increaseSearchCount(String keyword) {
-        System.out.println("PopularSearchService.increaseSearchCount");
         popularSearchRepository.findByKeyword(keyword)
                 .ifPresentOrElse(
                         PopularSearch::increaseCount,
