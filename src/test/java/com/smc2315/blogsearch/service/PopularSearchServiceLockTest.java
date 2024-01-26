@@ -34,7 +34,6 @@ public class PopularSearchServiceLockTest {
 
         //then
         final int currentCount = popularSearchService.findTop10Keywords().get(0).count();
-        System.out.println(popularSearchService.findTop10Keywords().size());
         assertEquals(people, currentCount);
     }
 
